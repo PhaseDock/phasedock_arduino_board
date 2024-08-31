@@ -1,4 +1,4 @@
-name: ESP32 Arduino Libs CI
+name: PhaseDock Arduino Libs CI
 
 on:
   push:
@@ -23,9 +23,10 @@ jobs:
     - name: Install dependencies
       run: bash ./tools/prepare-ci.sh
     - name: Build Libs for ${{ matrix.target }}
-      run: bash ./build.sh -t ${{ matrix.target }}
-    - name: Upload archive
-      uses: actions/upload-artifact@v1
-      with:
-        name: artifacts-${{ matrix.target }}
-        path: dist
+      run: bash ./build.sh
+#      run: bash ./build.sh -t ${{ matrix.target }}
+#    - name: Upload archive
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: artifacts-${{ matrix.target }}
+#        path: dist
