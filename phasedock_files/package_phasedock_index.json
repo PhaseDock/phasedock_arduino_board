@@ -18,6 +18,9 @@
           "boards": [
             {
               "name": "ESP32 Dev Board"
+            },
+            {
+              "name": "ESP32-S3 Dev Board"
             }
           ],
           "toolsDependencies": [
