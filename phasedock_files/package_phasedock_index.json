@@ -5,6 +5,9 @@
       "maintainer": "Phasedock Support",
       "websiteURL": "https://phasedock.com",
       "email": "support@phasedock.com",
+      "help": {
+        "online": "https://phasedock.com"
+      },
       "platforms": [
         {
           "name": "PhaseDock Robot Arm",
