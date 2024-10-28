@@ -20,7 +20,7 @@ new_platform=$(cat <<EOF
   "architecture": "esp32",
   "version": "$DIST_VERSION",
   "category": "Contributed",
-  "url": "https://github.com/PhaseDock/esp32-arduino-lib-builder/releases/download/1.0.0/$DIST_NAME.zip",
+  "url": "https://github.com/PhaseDock/phasedock_arduino_board/releases/download/v$DIST_VERSION/$DIST_NAME.zip",
   "archiveFileName": "$DIST_NAME.zip",
   "checksum": "SHA-256:$dist_checksum",
   "size": "$dist_size",
@@ -93,12 +93,14 @@ EOF
 # tag create and upload the binaries for the release
 gh auth login && \
 gh repo set-default https://github.com/PhaseDock/phasedock_arduino_board.git && \
+echo "gh release create v$DIST_VERSION --title \"PhaseDock Robot Arm Board Release $DIST_VERSION\" --notes \"Release $DIST_VERSION of the Arduino board for the PhaseDock Robot Arm\"" && \
 gh release create v$DIST_VERSION --title "PhaseDock Robot Arm Board Release $DIST_VERSION" --notes "Release $DIST_VERSION of the Arduino board for the PhaseDock Robot Arm" && \
 gh release upload v$DIST_VERSION dist/$DIST_NAME.zip && \
 
 # check out the main branch that hosts the package index file
 git fetch && \
 git checkout $target_branch && \
+git pull --rebase && \
 
 # Update the package index, adding or updating the platform
 jq --argjson new_platform "$new_platform" --arg package_name "$package_name" --arg platform_version "$DIST_VERSION" '
