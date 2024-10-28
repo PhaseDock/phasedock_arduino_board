@@ -161,10 +161,10 @@
           "architecture": "esp32",
           "version": "1.0.1",
           "category": "Contributed",
-          "url": "https://github.com/PhaseDock/esp32-arduino-lib-builder/releases/download/1.0.0/phasedock-esp32-robotarm-1.0.1.zip",
+          "url": "https://github.com/PhaseDock/phasedock_arduino_board/releases/download/v1.0.1/phasedock-esp32-robotarm-1.0.1.zip",
           "archiveFileName": "phasedock-esp32-robotarm-1.0.1.zip",
-          "checksum": "SHA-256:bb913b66f927dc315edbf3442a17247a0905e33a1df018265ff76a9d075be578",
-          "size": "75509314",
+          "checksum": "SHA-256:6a7eb558e3a9e6ac22238478edabbf0777b481d6a96883c062961f7da5bf172a",
+          "size": "75509312",
           "boards": [
             {
               "name": "ESP32 Dev Board"
