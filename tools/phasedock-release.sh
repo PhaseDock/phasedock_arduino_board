@@ -20,7 +20,7 @@ new_platform=$(cat <<EOF
   "architecture": "esp32",
   "version": "$DIST_VERSION",
   "category": "Contributed",
-  "url": "https://github.com/PhaseDock/phasedock_arduino_board/releases/download/$DIST_VERSION/$DIST_NAME.zip",
+  "url": "https://github.com/PhaseDock/phasedock_arduino_board/releases/download/v$DIST_VERSION/$DIST_NAME.zip",
   "archiveFileName": "$DIST_NAME.zip",
   "checksum": "SHA-256:$dist_checksum",
   "size": "$dist_size",
