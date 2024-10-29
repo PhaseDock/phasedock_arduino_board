@@ -104,6 +104,20 @@ fi
 if [ $? -ne 0 ]; then exit 1; fi
 
 #
+# CLONE/UPDATE ESP-RAINMAKER
+#
+echo "Updating ESP-RainMaker..."
+if [ ! -d "$AR_COMPS/esp-rainmaker" ]; then
+    git clone $RMAKER_REPO_URL "$AR_COMPS/esp-rainmaker" && \
+    git -C "$AR_COMPS/esp-rainmaker"  reset --hard $ESP32_RAINMAKER_VERSION
+else
+	git -C "$AR_COMPS/esp-rainmaker" fetch && \
+	git -C "$AR_COMPS/esp-rainmaker" pull --ff-only && \
+    git -C "$AR_COMPS/esp-rainmaker"  reset --hard $ESP32_RAINMAKER_VERSION
+fi
+if [ $? -ne 0 ]; then exit 1; fi
+
+#
 # CLONE/UPDATE ESP-DSP
 #
 echo "Updating ESP-DSP..."

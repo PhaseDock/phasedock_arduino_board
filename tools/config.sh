@@ -48,6 +48,10 @@ fi
 if [ -z $TINYUSB_VERSION ]; then
   export TINYUSB_VERSION="0.17.0" #defaulting this to a known good version, can still be overridden
 fi
+if [ -z $ESP_RAINMAKER_VERSION ]; then
+  export $ESP_RAINMAKER_VERSION="f98cf1ec50bff6706c5afe626806fe9d95dbc141" #defaulting this to a known good version, can still be overridden
+fi
+
 
 IDF_COMPS="$IDF_PATH/components"
 IDF_TOOLCHAIN="xtensa-$IDF_TARGET-elf"
