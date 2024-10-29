@@ -46,7 +46,7 @@ if [ -z $ESPRESSIF_DSP_VERSION ]; then
   export ESPRESSIF_DSP_VERSION="b3841d696950b2591cd84c94a0494c724a9f322e" #defaulting this to a known good version, can still be overridden
 fi
 if [ -z $TINYUSB_VERSION ]; then
-  export TINYUSB_VERSION="4485bffd139086d3adc40b1b176a59567a0254fc" #defaulting this to a known good version, can still be overridden
+  export TINYUSB_VERSION="0.17.0" #defaulting this to a known good version, can still be overridden
 fi
 
 IDF_COMPS="$IDF_PATH/components"
