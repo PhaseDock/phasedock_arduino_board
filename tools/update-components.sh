@@ -72,10 +72,12 @@ if [ $? -ne 0 ]; then exit 1; fi
 echo "Updating ESP32 Camera..."
 if [ ! -d "$AR_COMPS/esp32-camera" ]; then
 	git clone $CAMERA_REPO_URL "$AR_COMPS/esp32-camera" && \
-	git -C "$AR_COMPS/esp32-camera" reset --hard $ESP32_CAMERA_VERSION
+	git -C "$AR_COMPS/esp32-camera" checkout $ESP32_CAMERA_VERSION && \
+  git -C "$AR_COMPS/esp32-camera" submodule update --init --recursive
 else
 	git -C "$AR_COMPS/esp32-camera" fetch && \
-	git -C "$AR_COMPS/esp32-camera" pull --ff-only
+	git -C "$AR_COMPS/esp32-camera" checkout $ESP32_CAMERA_VERSION && \
+  git -C "$AR_COMPS/esp32-camera" submodule update --init --recursive
 fi
 if [ $? -ne 0 ]; then exit 1; fi
 
@@ -85,8 +87,13 @@ if [ $? -ne 0 ]; then exit 1; fi
 echo "Updating ESP-DL..."
 if [ ! -d "$AR_COMPS/esp-dl" ]; then
 	git clone $DL_REPO_URL "$AR_COMPS/esp-dl" && \
-	git -C "$AR_COMPS/esp-dl" reset --hard $ESP_DL_VERSION
+	git -C "$AR_COMPS/esp-dl" checkout $ESP_DL_VERSION && \
+  git -C "$AR_COMPS/esp-dl" submodule update --init --recursive
 	if [ $? -ne 0 ]; then exit 1; fi
+else
+  git -C "$AR_COMPS/esp-dl" fetch && \
+  git -C "$AR_COMPS/esp-dl" checkout "$ESP_DL_VERSION" && \
+  git -C "$AR_COMPS/esp-dl" submodule update --init --recursive
 fi
 
 #
@@ -95,10 +102,11 @@ fi
 echo "Updating ESP-LITTLEFS..."
 if [ ! -d "$AR_COMPS/esp_littlefs" ]; then
 	git clone $LITTLEFS_REPO_URL "$AR_COMPS/esp_littlefs" && \
+  git -C "$AR_COMPS/esp_littlefs" checkout "$ESP_LITTLEFS_VERSION" && \
   git -C "$AR_COMPS/esp_littlefs" submodule update --init --recursive
 else
 	git -C "$AR_COMPS/esp_littlefs" fetch && \
-	git -C "$AR_COMPS/esp_littlefs" pull --ff-only && \
+  git -C "$AR_COMPS/esp_littlefs" checkout "$ESP_LITTLEFS_VERSION" && \
   git -C "$AR_COMPS/esp_littlefs" submodule update --init --recursive
 fi
 if [ $? -ne 0 ]; then exit 1; fi
@@ -110,10 +118,9 @@ echo "Updating ESP-RainMaker..."
 if [ ! -d "$AR_COMPS/esp-rainmaker" ]; then
   git clone $RMAKER_REPO_URL "$AR_COMPS/esp-rainmaker" && \
   git -C "$AR_COMPS/esp-rainmaker" checkout "$ESP_RAINMAKER_VERSION" && \
-  git -C "$AR_COMPS/esp-rainmaker"  submodule update --init --recursive
+  git -C "$AR_COMPS/esp-rainmaker" submodule update --init --recursive
 else
 	git -C "$AR_COMPS/esp-rainmaker" fetch && \
-	git -C "$AR_COMPS/esp-rainmaker" pull --ff-only && \
   git -C "$AR_COMPS/esp-rainmaker" checkout "$ESP_RAINMAKER_VERSION" && \
   git -C "$AR_COMPS/esp-rainmaker" submodule update --init --recursive
 fi
@@ -125,10 +132,12 @@ if [ $? -ne 0 ]; then exit 1; fi
 echo "Updating ESP-DSP..."
 if [ ! -d "$AR_COMPS/espressif__esp-dsp" ]; then
 	git clone $DSP_REPO_URL "$AR_COMPS/espressif__esp-dsp" && \
-	git -C "$AR_COMPS/espressif__esp-dsp" reset --hard $ESPRESSIF_DSP_VERSION
+	git -C "$AR_COMPS/espressif__esp-dsp" checkout $ESPRESSIF_DSP_VERSION && \
+  git -C "$AR_COMPS/espressif__esp-dsp" submodule update --init --recursive
 else
 	git -C "$AR_COMPS/espressif__esp-dsp" fetch && \
-	git -C "$AR_COMPS/espressif__esp-dsp" pull --ff-only
+	git -C "$AR_COMPS/espressif__esp-dsp" checkout $ESPRESSIF_DSP_VERSION && \
+  git -C "$AR_COMPS/espressif__esp-dsp" submodule update --init --recursive
 fi
 if [ $? -ne 0 ]; then exit 1; fi
 
@@ -139,10 +148,9 @@ echo "Updating TinyUSB..."
 if [ ! -d "$AR_COMPS/arduino_tinyusb/tinyusb" ]; then
 	git clone $TINYUSB_REPO_URL "$AR_COMPS/arduino_tinyusb/tinyusb" && \
   git -C "$AR_COMPS/arduino_tinyusb/tinyusb" checkout "$TINYUSB_VERSION" && \
-  git -C "$AR_COMPS/arduino_tinyusb/tinyusb"  submodule update --init --recursive
+  git -C "$AR_COMPS/arduino_tinyusb/tinyusb" submodule update --init --recursive
 else
 	git -C "$AR_COMPS/arduino_tinyusb/tinyusb" fetch && \
-	git -C "$AR_COMPS/arduino_tinyusb/tinyusb" pull --ff-only
   git -C "$AR_COMPS/arduino_tinyusb/tinyusb" checkout "$TINYUSB_VERSION" && \
   git -C "$AR_COMPS/arduino_tinyusb/tinyusb" submodule update --init --recursive
 fi
