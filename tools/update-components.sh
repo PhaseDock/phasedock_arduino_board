@@ -138,10 +138,13 @@ if [ $? -ne 0 ]; then exit 1; fi
 echo "Updating TinyUSB..."
 if [ ! -d "$AR_COMPS/arduino_tinyusb/tinyusb" ]; then
 	git clone $TINYUSB_REPO_URL "$AR_COMPS/arduino_tinyusb/tinyusb" && \
-	git -C "$AR_COMPS/arduino_tinyusb/tinyusb" reset --hard $TINYUSB_VERSION
+  git -C "$AR_COMPS/arduino_tinyusb/tinyusb" checkout "$TINYUSB_VERSION" && \
+  git -C "$AR_COMPS/arduino_tinyusb/tinyusb"  submodule update --init --recursive
 else
 	git -C "$AR_COMPS/arduino_tinyusb/tinyusb" fetch && \
 	git -C "$AR_COMPS/arduino_tinyusb/tinyusb" pull --ff-only
+  git -C "$AR_COMPS/arduino_tinyusb/tinyusb" checkout "$TINYUSB_VERSION" && \
+  git -C "$AR_COMPS/arduino_tinyusb/tinyusb" submodule update --init --recursive
 fi
 if [ $? -ne 0 ]; then exit 1; fi
 
